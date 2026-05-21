@@ -754,6 +754,8 @@
             .doc-card-body img:hover { border-color: #1565c0; }
             .doc-download { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: #1565c0; color: #fff; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 600; margin-bottom: 12px; }
             .doc-download:hover { background: #0d47a1; }
+            .doc-print { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: #fff; color: #1565c0; border: 1px solid #1565c0; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 600; margin-bottom: 12px; cursor: pointer; }
+            .doc-print:hover { background: #e3f2fd; }
             .doc-thumbnails { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
             .doc-thumbnails img { width: 100%; height: auto; }
             /* Lightbox */
@@ -777,6 +779,19 @@
                 var header = document.getElementById('doc-toggle-' + id);
                 header.textContent = body.classList.contains('open') ? '▲ Collapse' : '▼ Expand';
             }
+            function printDoc(cardId) {
+                var card = document.getElementById('doc-body-' + cardId);
+                var wasOpen = card.classList.contains('open');
+                if (!wasOpen) card.classList.add('open');
+                var content = card.innerHTML;
+                var win = window.open('', '_blank', 'width=800,height=600');
+                win.document.write('<!DOCTYPE html><html><head><title>Print Document</title><style>body{font-family:Segoe UI,system-ui,sans-serif;padding:20px;margin:0}img{max-width:100%;height:auto;margin-bottom:12px;display:block}.doc-download,.doc-print{display:none!important}@media print{body{padding:0}}</style></head><body>');
+                win.document.write(content);
+                win.document.write('</body></html>');
+                win.document.close();
+                win.onload = function() { win.print(); };
+                if (!wasOpen) card.classList.remove('open');
+            }
         </script>
 
         <!-- Canadian Passport -->
@@ -787,6 +802,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-passport">
                 <a href="docs/NJarry_Passport_2024.pdf" download class="doc-download">⬇ Download PDF (154.3 KB)</a>
+                <a class="doc-print" onclick="printDoc('passport')">🖨 Print</a>
                 <div class="doc-thumbnails">
                     <img src="docs/NJarry_Passport_2024_1.png" alt="Passport" onclick="openLightbox(this.src)">
                 </div>
@@ -802,6 +818,7 @@
             <div class="doc-card-body" id="doc-body-goldenvisa">
                 <a href="docs/Golden_Visa_Front.pdf" download class="doc-download">⬇ Download Front (5.1 MB)</a>
                 <a href="docs/Golden_Visa.pdf" download class="doc-download">⬇ Download Full (4.1 MB)</a>
+                <a class="doc-print" onclick="printDoc('goldenvisa')">🖨 Print</a>
                 <div class="doc-thumbnails">
                     <img src="docs/Golden_Visa_Front_1.png" alt="Golden Visa Front" onclick="openLightbox(this.src)">
                     <img src="docs/Golden_Visa_1.png" alt="Golden Visa" onclick="openLightbox(this.src)">
@@ -817,6 +834,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-landreg-apt">
                 <a href="docs/LaPunt_Apartment_Land_Registry.pdf" download class="doc-download">⬇ Download PDF (198.6 KB)</a>
+                <a class="doc-print" onclick="printDoc('landreg-apt')">🖨 Print</a>
                 <div class="doc-thumbnails">
                     <img src="docs/LaPunt_Apartment_Land_Registry_1.png" alt="Land Registry Apartment p1" onclick="openLightbox(this.src)">
                     <img src="docs/LaPunt_Apartment_Land_Registry_2.png" alt="Land Registry Apartment p2" onclick="openLightbox(this.src)">
@@ -832,6 +850,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-landreg-garage">
                 <a href="docs/LaPunt_Garage_Land_Registry.pdf" download class="doc-download">⬇ Download PDF (181.9 KB)</a>
+                <a class="doc-print" onclick="printDoc('landreg-garage')">🖨 Print</a>
                 <div class="doc-thumbnails">
                     <img src="docs/LaPunt_Garage_Land_Registry_1.png" alt="Land Registry Garage p1" onclick="openLightbox(this.src)">
                     <img src="docs/LaPunt_Garage_Land_Registry_2.png" alt="Land Registry Garage p2" onclick="openLightbox(this.src)">
@@ -847,6 +866,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-municipal-tax">
                 <a href="docs/Municipal_Taxes.pdf" download class="doc-download">⬇ Download PDF (65.8 KB)</a>
+                <a class="doc-print" onclick="printDoc('municipal-tax')">🖨 Print</a>
                 <div class="doc-thumbnails">
                     <img src="docs/Municipal_Taxes_1.png" alt="Municipal Tax p1" onclick="openLightbox(this.src)">
                     <img src="docs/Municipal_Taxes_2.png" alt="Municipal Tax p2" onclick="openLightbox(this.src)">
@@ -862,6 +882,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-cantonal-tax">
                 <a href="docs/Cantonal_Taxes.pdf" download class="doc-download">⬇ Download PDF (70.2 KB)</a>
+                <a class="doc-print" onclick="printDoc('cantonal-tax')">🖨 Print</a>
                 <div class="doc-thumbnails">
                     <img src="docs/Cantonal_Taxes_1.png" alt="Cantonal Tax p1" onclick="openLightbox(this.src)">
                     <img src="docs/Cantonal_Taxes_2.png" alt="Cantonal Tax p2" onclick="openLightbox(this.src)">
@@ -877,6 +898,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-condo-fees">
                 <a href="docs/Condo_Association_Fees.pdf" download class="doc-download">⬇ Download PDF (70.7 KB)</a>
+                <a class="doc-print" onclick="printDoc('condo-fees')">🖨 Print</a>
                 <div class="doc-thumbnails">
                     <img src="docs/Condo_Association_Fees_1.png" alt="Condo Fees p1" onclick="openLightbox(this.src)">
                     <img src="docs/Condo_Association_Fees_2.png" alt="Condo Fees p2" onclick="openLightbox(this.src)">
@@ -893,6 +915,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-municipal-fees">
                 <a href="docs/Municipal_Annual_Fees.pdf" download class="doc-download">⬇ Download PDF (515.8 KB)</a>
+                <a class="doc-print" onclick="printDoc('municipal-fees')">🖨 Print</a>
                 <div class="doc-thumbnails">
                     <img src="docs/Municipal_Annual_Fees_1.png" alt="Municipal Fees p1" onclick="openLightbox(this.src)">
                     <img src="docs/Municipal_Annual_Fees_2.png" alt="Municipal Fees p2" onclick="openLightbox(this.src)">
@@ -908,6 +931,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-tourism-tax">
                 <a href="docs/Guests_Tourism_Taxes.pdf" download class="doc-download">⬇ Download PDF (348.9 KB)</a>
+                <a class="doc-print" onclick="printDoc('tourism-tax')">🖨 Print</a>
                 <div class="doc-thumbnails">
                     <img src="docs/Guests_Tourism_Taxes_1.png" alt="Tourism Tax" onclick="openLightbox(this.src)">
                 </div>
@@ -939,6 +963,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-tax-clearance">
                 <a href="docs/Greek_Tax_Clearance_2026.pdf" download class="doc-download">⬇ Download PDF (151.7 KB)</a>
+                <a class="doc-print" onclick="printDoc('tax-clearance')">🖨 Print</a>
                 <div style="background:#fff3e0; border:1px solid #ffe0b2; border-radius:4px; padding:10px 14px; margin-bottom:12px; font-size:12px;">
                     <strong>English Summary:</strong> This is the official ENFIA (ΕΝΦΙΑ) clearance certificate issued by the Hellenic Republic / AADE (Independent Authority for Public Revenue) on 15 March 2026. It confirms that <strong>Natalie Jarry (AFM/Tax ID: 181659411)</strong> is a registered Greek tax resident in the Attica region (KEΦOK 9791), and that her 2026 unified property tax obligations have been <strong>fully settled with no outstanding balance</strong>. Document reference: 2359274/2026.
                 </div>
@@ -958,6 +983,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-nea-smyrni">
                 <a href="docs/Nea_Smyrni_Purchase_Agreement.pdf" download class="doc-download">⬇ Download PDF (17.7 MB)</a>
+                <a class="doc-print" onclick="printDoc('nea-smyrni')">🖨 Print</a>
                 <p style="font-size:12px; color:#888; margin-bottom:8px;">20-page purchase agreement. Key pages shown below.</p>
                 <div class="doc-thumbnails">
                     <img src="docs/Nea_Smyrni_1.png" alt="Purchase Agreement p1" onclick="openLightbox(this.src)">
@@ -975,6 +1001,8 @@
             </div>
             <div class="doc-card-body" id="doc-body-hyrock-checklist">
                 <a href="docs/Hyrock_Checklist.pdf" download class="doc-download">⬇ Download PDF (125.7 KB)</a>
+                <a class="doc-print" onclick="printDoc('hyrock-checklist')">🖨 Print</a>
+                <a class="doc-print" onclick="printDoc('insurance')">🖨 Print</a>
                 <div class="doc-thumbnails">
                     <img src="docs/Hyrock_Checklist_1.png" alt="Hyrock Checklist" onclick="openLightbox(this.src)">
                 </div>
@@ -989,7 +1017,7 @@
             </div>
             <div class="doc-card-body" id="doc-body-signed-decl">
                 <p style="font-size:12px; color:#888; margin-bottom:8px;">Signed original of the Declaration of Income and Financial Position, Athens, Greece, 21 May 2026. Two pages.</p>
-                <div class="doc-thumbnails">
+                <a class="doc-print" onclick="printDoc('signed-decl')">🖨 Print</a><div class="doc-thumbnails">
                     <img src="docs/signed-page-1.jpeg" alt="Signed Declaration Page 1" onclick="openLightbox(this.src)">
                     <img src="docs/signed-page-2.jpeg" alt="Signed Declaration Page 2 (signature)" onclick="openLightbox(this.src)">
                 </div>
