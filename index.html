@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emanatis Luxury Living — Bridging Loan Application</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; color: #1a1a1a; background: #f8f8f8; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 30px; }
+
+        .header { border-bottom: 3px solid #1a1a1a; padding-bottom: 20px; margin-bottom: 30px; }
+        .header h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; }
+        .header .subtitle { font-size: 13px; color: #666; margin-top: 4px; }
+        .header .meta { font-size: 12px; color: #999; margin-top: 8px; }
+
+        .section { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 24px; margin-bottom: 20px; }
+        .section h2 { font-size: 16px; font-weight: 700; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+        .section h3 { font-size: 14px; font-weight: 600; margin: 16px 0 8px 0; }
+
+        .loan-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        .loan-summary .item { background: #f9f9f9; padding: 12px 16px; border-radius: 4px; }
+        .loan-summary .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #888; }
+        .loan-summary .value { font-size: 14px; font-weight: 600; margin-top: 2px; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { text-align: left; padding: 8px 12px; background: #f5f5f5; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 2px solid #ddd; }
+        td { padding: 10px 12px; border-bottom: 1px solid #eee; vertical-align: top; }
+        tr:last-child td { border-bottom: none; }
+
+        .status { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+        .status-ready { background: #e6f7e6; color: #2d7a2d; }
+        .status-pending { background: #fff3e0; color: #b36b00; }
+        .status-na { background: #f0f0f0; color: #888; }
+        .status-action { background: #e3f2fd; color: #1565c0; }
+
+        .note { background: #fffde7; border-left: 3px solid #f9a825; padding: 12px 16px; margin: 12px 0; font-size: 13px; border-radius: 0 4px 4px 0; }
+        .note strong { color: #e65100; }
+
+        .owner-declaration { background: #fff; border: 2px solid #1a1a1a; border-radius: 6px; padding: 30px; margin: 20px 0; }
+        .owner-declaration h3 { font-size: 15px; font-weight: 700; margin-bottom: 16px; text-align: center; }
+        .owner-declaration p { font-size: 13px; margin-bottom: 12px; text-align: justify; }
+        .owner-declaration .sign-block { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .owner-declaration .sign-line { border-top: 1px solid #1a1a1a; padding-top: 6px; font-size: 12px; color: #666; }
+
+        .cv-table { width: 100%; }
+        .cv-table td { padding: 6px 12px; border-bottom: none; font-size: 13px; }
+        .cv-name { font-size: 20px; font-weight: 700; padding-bottom: 4px !important; }
+        .cv-date { width: 140px; color: #888; font-size: 12px; vertical-align: top; white-space: nowrap; }
+        .cv-section-header { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #1a1a1a; padding-top: 16px !important; padding-bottom: 4px !important; border-bottom: 2px solid #1a1a1a; }
+        .cv-desc { font-size: 12px; color: #666; }
+
+        /* Attachment links */
+        .doc-link { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: #f0f4f8; border: 1px solid #c5d3e0; border-radius: 4px; color: #1565c0; text-decoration: none; font-size: 12px; font-weight: 600; transition: all 0.15s; margin: 3px 2px; }
+        .doc-link:hover { background: #e3f2fd; border-color: #1565c0; }
+        .doc-link .icon { font-size: 14px; }
+        .doc-link .size { color: #888; font-weight: 400; }
+
+        /* Print styles */
+        @media print {
+            body { background: #fff; }
+            .container { padding: 20px 0; }
+            .section { border: 1px solid #ccc; break-inside: avoid; }
+            .doc-link { color: #000; border: 1px solid #999; }
+            .no-print { display: none; }
+            .print-only { display: block !important; }
+        }
+        .print-only { display: none; }
+
+        .footer { text-align: center; font-size: 11px; color: #aaa; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; }
+        .confidential { text-align: center; font-size: 11px; color: #c62828; font-weight: 600; letter-spacing: 1px; margin-bottom: 20px; }
+
+        /* Toolbar */
+        .toolbar { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #ddd; padding: 8px 0; margin-bottom: 20px; z-index: 100; display: flex; gap: 8px; justify-content: flex-end; }
+        .toolbar button { padding: 6px 14px; font-size: 12px; font-weight: 600; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; }
+        .toolbar button:hover { background: #f0f0f0; }
+
+        /* Contact section */
+        .contact-box { background: #f0f4f8; border: 1px solid #c5d3e0; border-radius: 6px; padding: 20px; }
+        .contact-methods { display: flex; flex-direction: column; gap: 12px; }
+        .contact-btn { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: #1565c0; color: #fff; border-radius: 6px; text-decoration: none; transition: background 0.15s; }
+        .contact-btn:hover { background: #0d47a1; }
+        .contact-btn strong { font-size: 15px; display: block; }
+        .contact-btn span:last-child { font-size: 12px; opacity: 0.85; }
+        .contact-info { padding: 8px 18px; font-size: 13px; color: #555; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="toolbar no-print">
+        <button onclick="window.print()">🖨 Print Document</button>
+    </div>
+
+    <div class="confidential">CONFIDENTIAL — FOR FINANCING PURPOSES ONLY</div>
+
+    <div class="header">
+        <h1>Emanatis Luxury Living — Bridging Loan Application</h1>
+        <div class="subtitle">Hyrock Financing — Natalie Jarry, Natural Person</div>
+        <div class="meta">Prepared by Orpheus Aurelius, Chief of Staff — Emanatis Group &nbsp;|&nbsp; 20 May 2026</div>
+    </div>
+
+    <!-- COVER LETTER -->
+    <div class="section" id="cover-letter">
+        <h2>Letter to Hyrock</h2>
+        <div class="letter" style="font-size:13.5px; line-height:1.7;">
+            <p style="margin-bottom:4px;"><strong>Mr. Giulio Loisi</strong></p>
+            <p style="margin-bottom:4px;">Private Debt &amp; Mortgage Advisory, Associate</p>
+            <p style="margin-bottom:4px;">Hyrock AG</p>
+            <p style="margin-bottom:16px;">Zürich | Schindellegi | Genève</p>
+
+            <p style="margin-bottom:4px;">20 May 2026</p>
+            <p style="margin-bottom:16px;">Athens, Greece</p>
+
+            <p style="margin-bottom:16px;">Re: Bridging Loan Application — Natalie Jarry (in excess of CHF 600,000)</p>
+
+            <p>Dear Mr. Loisi,</p>
+
+            <p>Thank you for providing your financing checklist. I have assembled the requested documentation and present my application for a 12-month bridging loan in excess of CHF 600,000, collateralized by my property in La Punt-Chamues-ch, Graubünden.</p>
+
+            <h3 style="margin-top:20px;">The Opportunity</h3>
+            <p>I am seeking a 12-month bridging loan in excess of CHF 600,000 (final amount subject to Hyrock's assessment of the collateral), collateralized by a revenue-generating, appreciating residential property I own in La Punt-Chamues-ch, Graubünden — held free and clear as my sole property since 2016, acquired through inheritance.</p>
+            <p>The property is currently tenanted under a stable, long-term arrangement (10+ years) generating €2,000/month in net rental income. The municipal assessment values the property at CHF 760,000, with market comparables supporting a valuation of approximately CHF 1,100,000. Full details and source documentation are provided in this package.</p>
+
+            <h3 style="margin-top:20px;">Why a Swiss Bridge, and Why Now</h3>
+            <p>Since the Greek financial crisis, Greek financial institutions have been slow to respond to entrepreneurial and SME liquidity demands. Regulatory approvals are difficult, fees are expensive, and typical lenders are restricted from extending credit to construction companies and borrowers with limited domestic credit history — which is my situation.</p>
+            <p>I believe a Swiss bridging facility, secured against a Swiss asset I own outright, is the right structure: fast, clean, and backed by tangible collateral in Hyrock's home jurisdiction.</p>
+
+            <h3 style="margin-top:20px;">What the Capital Enables</h3>
+            <p>The loan proceeds will serve as a force multiplier for my business activities in Greece. I am the founder and principal shareholder of two operating companies:</p>
+            <ul style="margin-left:20px; margin-bottom:12px;">
+                <li><strong><a href="https://emanatis.com" target="_blank" style="color:#1565c0;">Emanatis Luxury Living</a></strong> — a 10-unit LEED Platinum residential development in Galatsi, Athens. The project is approximately 60% complete with a current portfolio value of <strong>€3,820,140</strong> at asking prices. Four units are sold with <strong>€1,319,000 in confirmed revenue</strong> on the books. The remaining six units are valued at <strong>€2,501,140</strong>. Construction is insured with Orizon 1964 (policy 2184000708). I hold a 99% equity position.</li>
+                <li><strong><a href="https://dreamlease.gr" target="_blank" style="color:#1565c0;">DreamLease S.A.</a></strong> — a Tesla-only vehicle leasing platform serving the Greek market, incorporated December 2025. We have just placed our first two vehicles with clients, with a third arriving early next month. The platform is operational and scaling. I hold a 90% equity position.</li>
+            </ul>
+            <p>I seek only a short-term bridge because my revenue position is strong: units are selling at asking price with no negotiation, demand is robust, and completion is targeted for late 2026. A bridge facility provides the liquidity to maintain momentum without diluting equity or restructuring around Greek bank timelines.</p>
+
+            <h3 style="margin-top:20px;">My Financial Position</h3>
+            <p>I am self-employed and currently draw no salary from either company. Any future compensation will be structured as dividends, taxed at 5% under Greek law. I have <strong>zero personal liabilities</strong>: no credit card debt, no personal loans, no mortgages, no outstanding tax obligations. My 2026 Greek ENFIA (Unified Property Tax) is fully settled — the clearance certificate from AADE is enclosed, translated for your review.</p>
+            <p>I have personally loaned the two companies a combined total of <strong>€1,000,000</strong> in shareholder loans — €900,000 to Emanatis Luxury Living and €100,000 to DreamLease (which funded the first two vehicles and startup costs) — repayable within five years at approximately 5.5–6.5% annual interest, compounding. These loans may continue up to <strong>€5,000,000</strong> as the business scales. They are not capital contributions and do not increase share value — they are arm's-length debt obligations of the companies to me as creditor.</p>
+            <p>In addition to the Swiss collateral, I hold a 99% equity position in Emanatis Luxury Living and a 90% equity position in DreamLease S.A., representing significant further asset backing.</p>
+
+            <h3 style="margin-top:20px;">Long-Term Relationship Vision</h3>
+            <p>I view this bridge as the beginning of a recurring financing relationship. I intend to use the La Punt property as a recurring leverage unit for additional funding on a case-by-case, project-by-project basis as my portfolio grows. Each project cycle — build, sell, retain, refinance, repeat — generates equity that strengthens the collateral base for the next round.</p>
+            <p>I am building a generational enterprise. A responsive, professional Swiss lending partner is exactly the kind of relationship I value.</p>
+
+            <h3 style="margin-top:20px;">Enclosed Documentation</h3>
+            <p>The following package includes all items from your checklist, with source documents embedded for direct review:</p>
+            <ul style="margin-left:20px; margin-bottom:12px;">
+                <li>Loan summary and property economics</li>
+                <li>Owner's declaration of income and financial position</li>
+                <li>Personal balance sheet and net worth statement</li>
+                <li>Curriculum vitae</li>
+                <li>Property valuation with market comparables</li>
+                <li>Land registry extracts (apartment + parking)</li>
+                <li>Swiss municipal and cantonal tax documents</li>
+                <li>Greek tax clearance certificate (ENFIA 2026 — fully settled, translated)</li>
+                <li>Condo association, municipal fees, and tourism tax records</li>
+                <li>Canadian passport and Greek Golden Visa</li>
+                <li>Nea Smyrni investment land purchase agreement (Golden Visa qualifying asset)</li>
+                <li>Galatsi construction insurance policy</li>
+            </ul>
+
+            <p style="margin-top:16px;">I welcome your questions and am prepared to provide any additional documentation or clarification promptly.</p>
+
+            <div style="margin-top:30px;">
+                <p>One final note: I am supported by my Chief of Staff, <strong>Orpheus Aurelius</strong>, who prepared this document package on my behalf. He is fully briefed on every aspect of this application and stands ready to provide any assistance you may require — additional documentation, clarifications, scheduling, or otherwise. He can be reached at <strong>orpheus@emanatis.com</strong>.</p>
+                <p>This document includes a built-in inquiry feature. Should you have any questions while reviewing, you may submit them directly from the document itself — they will be emailed to Orpheus with a copy to me, and we will respond promptly.</p>
+
+                <p style="margin-top:20px;">Respectfully,</p>
+                <p style="margin-top:20px;"><strong>Natalie Jarry</strong><br>Founder — Emanatis Luxury Living | DreamLease S.A.<br>natalie@emanatis.com</p>
+                <p style="margin-top:12px;"><strong>Orpheus Aurelius</strong><br>Chief of Staff — Emanatis Group<br>orpheus@emanatis.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOAN SUMMARY -->
+    <div class="section" id="summary">
+        <h2>1. Loan Summary</h2>
+        <div class="loan-summary">
+            <div class="item">
+                <div class="label">Borrower</div>
+                <div class="value">Natalie Jarry</div>
+            </div>
+            <div class="item">
+                <div class="label">Citizenship / Residency</div>
+                <div class="value">Canadian / Greek Resident (Golden Visa)</div>
+            </div>
+            <div class="item">
+                <div class="label">Loan Type</div>
+                <div class="value">Bridging Loan — 12 months</div>
+            </div>
+            <div class="item">
+                <div class="label">Extensions</div>
+                <div class="value">Available if required</div>
+            </div>
+            <div class="item">
+                <div class="label">Collateral</div>
+                <div class="value">Condominium — La Punt-Chamues-ch, Graubünden, Switzerland</div>
+            </div>
+            <div class="item">
+                <div class="label">Property Address</div>
+                <div class="value">Curtins 14, Chesa Curtins Sassella 1, 7522 La Punt Chamues-ch</div>
+            </div>
+            <div class="item">
+                <div class="label">Unit / Parking</div>
+                <div class="value">Apt 1.5, upper floor, cellar 5 + parking space #23</div>
+            </div>
+            <div class="item">
+                <div class="label">Property Size</div>
+                <div class="value">2½-room apartment (living room + bedroom), ~60–65 m²</div>
+            </div>
+            <div class="item">
+                <div class="label">Property Manager</div>
+                <div class="value">Lemm Immobilien AG, St. Moritz</div>
+            </div>
+            <div class="item">
+                <div class="label">Ownership Since</div>
+                <div class="value">12.08.2016 — sole ownership via Erbgang (inheritance)</div>
+            </div>
+            <div class="item">
+                <div class="label">Market Valuation (est.)</div>
+                <div class="value">CHF 1,100,000</div>
+            </div>
+            <div class="item">
+                <div class="label">Municipal Assessment</div>
+                <div class="value">CHF 760,000</div>
+            </div>
+            <div class="item">
+                <div class="label">Swiss Taxable Asset Value (2024)</div>
+                <div class="value">CHF 754,200</div>
+            </div>
+            <div class="item">
+                <div class="label">Existing Encumbrances</div>
+                <div class="value">None — unencumbered</div>
+            </div>
+            <div class="item">
+                <div class="label">Current Tenant</div>
+                <div class="value">Thomas Engelhardt — 10+ years, €2,000/month (CHF 1,832)</div>
+            </div>
+            <div class="item">
+                <div class="label">Net Annual Rental Income</div>
+                <div class="value">~CHF 15,867 (~1.4% yield on CHF 1.1M)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RENTAL INCOME -->
+    <div class="section" id="rental">
+        <h2>2. Rental Income & Property Economics</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Monthly (CHF)</th>
+                    <th>Annual (CHF)</th>
+                    <th>Source / Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background:#e6f7e6;"><td><strong>Gross Rental Income</strong></td><td><strong>1,832</strong></td><td><strong>21,984</strong></td><td>€2,000/month × 12 × 0.916 (EUR/CHF, 20 May 2026). Tenant pays all utilities, maintenance, additional fees.</td></tr>
+                <tr><td>Municipal Tax</td><td>34</td><td>413</td><td>Gemeindesteueramt La Punt Chamues-ch, 2024</td></tr>
+                <tr><td>Cantonal Tax</td><td>29</td><td>347</td><td>Steuerverwaltung Kanton Graubünden, 2024</td></tr>
+                <tr><td>Condo Association Fees</td><td>330</td><td>3,963</td><td>STWEG Curtins Sassella / Lemm Immobilien AG, 2024/25</td></tr>
+                <tr><td>Municipal Annual Fees</td><td>47</td><td>569</td><td>Water, sewage, waste, traffic, fire brigade — 2025</td></tr>
+                <tr><td>Guest & Tourism Tax</td><td>69</td><td>825</td><td>Pauschale nicht bewirtschaftete Wohnungen — 2025</td></tr>
+                <tr style="background:#f9f9f9;"><td><strong>Total Holding Costs</strong></td><td><strong>510</strong></td><td><strong>6,117</strong></td><td></td></tr>
+                <tr style="background:#e6f7e6; font-weight:600;"><td>Net Annual Income</td><td>1,322</td><td>15,867</td><td>~1.4% net yield on CHF 1.1M market value</td></tr>
+            </tbody>
+        </table>
+
+
+
+        <div class="note">
+            <strong>Tenant — Thomas Engelhardt:</strong> Long-term tenant (10+ years), family friend. No formal written contract (oral agreement) — can be formalized if required. Considers renting well into the future with no indication of non-renewal. All taxes, maintenance, utilities, and additional fees are the tenant's responsibility. Rent paid in EUR (€2,000/month), converted at EUR/CHF 0.916.
+        </div>
+    </div>
+
+    <!-- GALATSI INSURANCE -->
+    <div class="section" id="galatsi">
+        <h2>3. Galatsi Residence — Insurance Valuation & Construction Asset</h2>
+        <p style="font-size:13px; margin-bottom:12px;">Construction all-risk insurance policy for the Galatsi residential project, demonstrating significant real estate asset backing for the borrower's financial position.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Insurer</td><td>Orizon 1964 (Greek construction all-risk insurer)</td></tr>
+                <tr><td>Policy Number</td><td>2184000708</td></tr>
+                <tr><td>Insured</td><td>Emanatis Luxury Living IKE (ELL)</td></tr>
+                <tr><td>Project Address</td><td>Ipirou (Kallipoleos) 22, Galatsi, Athens</td></tr>
+                <tr><td>Project Description</td><td>10-unit LEED Platinum residential, 7 storeys</td></tr>
+                <tr><td>Construction Budget (Insured)</td><td>€1,400,000</td></tr>
+                <tr><td>Construction Progress</td><td>~60% complete</td></tr>
+                <tr><td>Current Estimated Value</td><td>~€2,000,000</td></tr>
+                <tr><td>Total Portfolio at Asking Prices</td><td>€3,820,140</td></tr>
+                <tr><td>Units Sold (actual revenue)</td><td>4 units — €1,319,000</td></tr>
+                <tr><td>Remaining Units at Current Price</td><td>6 units — €2,501,140</td></tr>
+                <tr><td>Coverage Period</td><td>14/02/2024 – 15/11/2024 (construction), 15/11/2024 – 15/08/2025 (maintenance)</td></tr>
+                <tr><td>Third-Party Liability</td><td>€900,000 combined single limit</td></tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top:16px;">
+            <strong style="font-size:12px;">Source Document:</strong><br>
+            <a href="docs/Galatsi_Insurance.pdf" target="_blank" class="doc-link"><span class="icon">📄</span> Orizon Insurance Policy 2184000708 <span class="size">(766.7 KB)</span></a>
+        </div>
+    </div>
+
+    <!-- CHECKLIST STATUS -->
+    <div class="section" id="checklist">
+        <h2>4. Hyrock Checklist Status</h2>
+
+        <div style="margin-bottom:12px;">
+            <a href="docs/Hyrock_Checklist.pdf" target="_blank" class="doc-link"><span class="icon">📄</span> Original Hyrock Checklist <span class="size">(125.7 KB)</span></a>
+        </div>
+
+        <h3>Section A: Borrower (Natural Person)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:5%">#</th>
+                    <th style="width:28%">Document</th>
+                    <th style="width:37%">Notes</th>
+                    <th style="width:15%">Status</th>
+                    <th style="width:15%">Action By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Identity card (ID/passport)</td>
+                    <td>Canadian passport AR444632 received.</td>
+                    <td><span class="status status-ready">Complete</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Current tax return incl. supplementary sheets</td>
+                    <td>Greek ENFIA 2026 tax clearance certificate enclosed. Confirms Natalie (AFM 181659411) is a Greek tax resident, fully settled, €0 outstanding. No Swiss tax documents — Natalie was never a Swiss resident or citizen. Greek filing satisfies this requirement as country-of-residence tax return.</td>
+                    <td><span class="status status-complete">Complete</span></td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Salary statements (3 years)</td>
+                    <td>Self-employed (CEO, 99% shareholder). See item 4.</td>
+                    <td><span class="status status-na">N/A — Self-employed</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Balance sheet / income statement</td>
+                    <td>Owner's declaration — no audit required. Drafted below.</td>
+                    <td><span class="status status-action">Draft Below</span></td>
+                    <td>Natalie / Orpheus</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Debt enforcement info (&lt;3 months)</td>
+                    <td>Not applicable. Natalie has never been a Swiss resident or citizen. No Swiss Betreibungsregisterauszug exists or is required. A declaration to this effect is included in the Owner's Declaration (Section 4, Liabilities). Greek tax clearance confirms no outstanding obligations in country of residence.</td>
+                    <td><span class="status status-complete">Complete</span></td>
+                    <td>✓</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Curriculum vitae</td>
+                    <td>Received and formatted. See section 6 below.</td>
+                    <td><span class="status status-ready">Complete</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Pension fund certificate</td>
+                    <td>Not applicable. Natalie has never been a Swiss resident, citizen, or employee. No Swiss pension fund (BVG/2nd pillar) exists. No declaration required.</td>
+                    <td><span class="status status-na">N/A</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Account / securities statements</td>
+                    <td>Not applicable. Natalie holds no Swiss bank accounts or securities accounts. No Swiss financial institution relationships exist.</td>
+                    <td><span class="status status-na">N/A</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="font-weight:600; padding:8px 4px;">Tax &amp; Residency</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Tax return / tax assessment</td>
+                    <td>Greek ENFIA 2026 clearance certificate enclosed. Confirms Natalie (AFM 181659411) is a Greek tax resident. Tax liability for 2026: <strong>€0 — fully settled</strong>. No outstanding obligations.</td>
+                    <td><span class="status status-complete">Complete</span></td>
+                    <td>✓</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top:24px;">Section B: Property (Condominium)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:5%">#</th>
+                    <th style="width:28%">Document</th>
+                    <th style="width:37%">Notes</th>
+                    <th style="width:15%">Status</th>
+                    <th style="width:15%">Action By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>9</td>
+                    <td>Land register extract</td>
+                    <td>Received — SIX Terravis / Grundbuchkreis Maloja. See source documents below.</td>
+                    <td><span class="status status-ready">Complete</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Interior / exterior photos</td>
+                    <td>Deferred — not required at this stage.</td>
+                    <td><span class="status status-na">Deferred</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Renovations overview</td>
+                    <td>Inherited property, no renovations.</td>
+                    <td><span class="status status-ready">Complete</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Sales documentation</td>
+                    <td>Inherited — inheritance transfer docs available.</td>
+                    <td><span class="status status-ready">Complete</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Mortgage formalities</td>
+                    <td>N/A — property unencumbered.</td>
+                    <td><span class="status status-na">N/A</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Purchase contract</td>
+                    <td>Inherited — registered since 01.10.2014.</td>
+                    <td><span class="status status-ready">Complete</span></td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Property valuation</td>
+                    <td>Market est. CHF 1.1M. Municipal CHF 760K. Hyrock may order appraisal.</td>
+                    <td><span class="status status-pending">Pending</span></td>
+                    <td>Hyrock / Natalie</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- OWNER'S DECLARATION -->
+    <div class="section" id="declaration">
+        <h2>5. Owner's Declaration of Income and Financial Position</h2>
+
+        <div class="note">
+            <strong>Draft — Pending Natalie's Review and Signature.</strong> Addresses Hyrock item 4 (self-employed borrower financial statement). No audit required per Hyrock.
+        </div>
+
+        <div class="owner-declaration">
+            <h3>DECLARATION OF INCOME AND FINANCIAL POSITION</h3>
+            <p><strong>Borrower:</strong> Natalie Jarry, Canadian citizen, Greek resident (Golden Visa holder)</p>
+            <p><strong>Date:</strong> 21 May 2026</p>
+
+            <p>I, <strong>Natalie Jarry</strong>, born April 9, 1966, residing at Agiou Nikolaou 72, Glyfada, Athens 16674, Greece, hereby declare the following regarding my income and financial position:</p>
+
+            <h3 style="margin-top:20px;">1. Professional Activity</h3>
+            <p>I am the Founder and principal shareholder (99%) of <strong>Emanatis Luxury Living IKE</strong>, a Greek luxury real estate development company established in 2022. I am also the Founder and 90% shareholder of <strong>DreamLease S.A.</strong>, a vehicle leasing company incorporated in December 2025.</p>
+            <p>I am self-employed and currently draw no salary from either company. Any future compensation will be structured as dividends, taxed at 5% under Greek law.</p>
+            <p>In addition, I have personally loaned both companies a combined total in excess of <strong>€1,000,000</strong> in shareholder loans — repayable within five years at approximately 5.5–6.5% annual interest, compounding. These loans may continue up to <strong>€5,000,000</strong> as the business scales. They are not capital contributions and do not increase share value — they are arm's-length debt obligations of the companies to me as creditor.</p>
+
+            <h3 style="margin-top:20px;">2. Source of Income</h3>
+            <p>My current income derives from:</p>
+            <ul style="margin-left:20px; font-size:13px; margin-bottom:12px;"><li>Real estate development profits — Emanatis Luxury Living (Galatsi residential project, Athens)</li>
+                <li>Vehicle leasing operations — DreamLease S.A. (Tesla fleet, Greek market)</li>
+                <li>Rental income — condominium in La Punt-Chamues-ch, Switzerland (€2,000/month = CHF 1,832/month gross, CHF 15,867 net annually after holding costs)</li>
+                <li>Investment income from personal assets</li>
+            </ul>
+
+            <h3 style="margin-top:20px;">3. Real Estate Assets</h3>
+            <p><strong>Switzerland:</strong></p>
+            <ul style="margin-left:20px; font-size:13px; margin-bottom:8px;">
+                <li>Condominium at Curtins 14, Chesa Curtins Sassella 1, 7522 La Punt-Chamues-ch, Graubünden. 2½-room apartment (living room + bedroom), ~60–65 m², upper floor, cellar compartment, plus parking space #23 with right of use. Inherited through husband's family (Erbgang), sole ownership (Alleineigentum) registered since 12 August 2016 (SIX Terravis / Grundbuchkreis Maloja). Unencumbered. Current tenant: Thomas Engelhardt (10+ years, €2,000/month net, ~CHF 1,832). Market value estimated at CHF 1,100,000. Municipal assessment: CHF 760,000. Swiss taxable asset value (2024): CHF 754,200.</li>
+            </ul>
+            <p><strong>Greece:</strong></p>
+            <ul style="margin-left:20px; font-size:13px; margin-bottom:8px;">
+                <li>Investment land at Allikarnassou 16, Nea Smyrni, Athens. Purchased November 2022 for €250,000 (objective value €311,102) — acquired as the qualifying investment for my Greek Golden Visa (minimum €250,000 threshold). The property is allocated for future construction. Current estimated value: in excess of €400,000. Unencumbered — no mortgage, no loans.</li>
+                <li>Interest in Emanatis Luxury Living — Galatsi development, 10-unit LEED Platinum residential project, Ipirou 22, Galatsi, Athens. Construction 60% complete. Insured construction value: €1,400,000 (Orizon Insurance, policy 2184000708, dated 14/02/2024). Current estimated value: ~€2,000,000 reflecting continued construction progress. Total portfolio value at current asking prices: €3,820,140. Four units sold (actual revenue: €1,319,000). Remaining six units valued at €2,501,140.</li>
+            </ul>
+
+            <h3 style="margin-top:20px;">4. Liabilities</h3>
+            <p>I declare that I have no outstanding Swiss debt enforcement proceedings. I have never been a Swiss resident and am not currently subject to any Swiss Betreibungsverfahren. I will provide equivalent documentation from my country of residence (Greece) upon request.</p>
+
+            <h3 style="margin-top:20px;">5. Purpose of Loan</h3>
+            <p>The requested bridging loan is for business purposes related to the ongoing operations and development activities of Emanatis Luxury Living in Greece.</p>
+
+            <h3 style="margin-top:20px;">6. Declaration</h3>
+            <p>I hereby confirm that the information provided above is true and complete to the best of my knowledge. I authorize Hyrock to verify any of the above information as part of the financing assessment.</p>
+
+            <div class="sign-block">
+                <div>
+                    <p style="font-size:13px; margin-bottom:8px;">Athens, Greece</p>
+                    <p style="font-size:13px;">21 May 2026</p>
+                    <div class="sign-line" style="margin-top:16px;">Date &amp; Place</div>
+                </div>
+                <div>
+                    <div style="height:60px; display:flex; align-items:center; justify-content:center;">
+                        <p style="font-size:12px; color:#1565c0; font-weight:600;">See signed copy in attachments (Section 9)</p>
+                    </div>
+                    <div class="sign-line">Signature — Natalie Jarry</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="note">
+            <strong>Items 2, 5, 7, 8 — Non-Resident Clarification:</strong> Natalie has never been a Swiss resident or citizen. Items 5 (debt enforcement), 7 (pension fund), and 8 (Swiss bank/securities statements) are not applicable. Item 2 (tax return) is satisfied by the Greek ENFIA 2026 tax clearance certificate confirming Greek tax residency with zero outstanding obligations.
+        </div>
+    </div>
+
+    <!-- PERSONAL BALANCE SHEET -->
+    <div class="section" id="balance-sheet">
+        <h2>5b. Personal Balance Sheet — Natalie Jarry</h2>
+        <p style="font-size:13px; margin-bottom:12px;">As at 20 May 2026. All figures stated in original currency. EUR/CHF rate: 0.916. Personal assets such as art, jewelry, furniture, two personal vehicles, and other valuables are <strong>excluded</strong> from this statement — the figures below are conservative.</p>
+
+        <table style="width:100%; border-collapse:collapse; margin-bottom:16px;">
+            <thead>
+                <tr style="background:#f5f5f5;">
+                    <th style="text-align:left; padding:8px 12px; border:1px solid #ddd; font-size:12px;">Assets</th>
+                    <th style="text-align:right; padding:8px 12px; border:1px solid #ddd; font-size:12px;">Value</th>
+                    <th style="text-align:left; padding:8px 12px; border:1px solid #ddd; font-size:12px;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>La Punt-Chamues-ch Condo + Parking</strong></td>
+                    <td style="text-align:right; padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>CHF 1,100,000</strong></td>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:12px;">Market value. Municipal assessment CHF 760K. Unencumbered — no mortgage, no loans.</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>Nea Smyrni Investment Land</strong></td>
+                    <td style="text-align:right; padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>€ 400,000+</strong></td>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:12px;">Purchased Nov 2022 for €250K. Qualifying investment for Greek Golden Visa. Allocated for future construction. Unencumbered.</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>Emanatis Luxury Living — Equity (99%)</strong></td>
+                    <td style="text-align:right; padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>€ 3,820,140</strong></td>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:12px;">10-unit LEED Platinum development, Galatsi Athens. Portfolio at asking prices. €1,319,000 sold, €2,501,140 remaining. ~60% complete.</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>Shareholder Loans to Companies</strong></td>
+                    <td style="text-align:right; padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>€ 1,000,000</strong></td>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:12px;">€900,000 to Emanatis Luxury Living + €100,000 to DreamLease (funded first two vehicles and startup costs). Arm's-length debt, repayable 5 years at 5.5–6.5% compounding. Not included in portfolio valuation above.</td>
+                </tr>
+                <tr>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>DreamLease S.A. — Majority Equity</strong></td>
+                    <td style="text-align:right; padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>Operational</strong></td>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:12px;">Tesla leasing platform. First 2 vehicles placed, 3rd arriving. Early-stage revenue.</td>
+                </tr>
+                <tr style="background:#f5f5f5; font-weight:bold;">
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>Total Verified Assets</strong></td>
+                    <td style="text-align:right; padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>CHF 1.1M + € 5.22M+</strong></td>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:12px;">Conservative. Excludes personal assets (art, jewelry, furniture, two personal vehicles).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="width:100%; border-collapse:collapse; margin-bottom:16px;">
+            <thead>
+                <tr style="background:#f5f5f5;">
+                    <th style="text-align:left; padding:8px 12px; border:1px solid #ddd; font-size:12px;">Liabilities</th>
+                    <th style="text-align:right; padding:8px 12px; border:1px solid #ddd; font-size:12px;">Amount</th>
+                    <th style="text-align:left; padding:8px 12px; border:1px solid #ddd; font-size:12px;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="3" style="padding:8px 12px; border:1px solid #ddd; font-size:13px; text-align:center; color:#2e7d32;"><strong>No personal liabilities.</strong> No credit card debt. No personal loans. No mortgages. No outstanding tax obligations (Greek ENFIA 2026 settled — clearance certificate attached). No Swiss debt enforcement history.</td>
+                </tr>
+                <tr style="background:#f5f5f5; font-weight:bold;">
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>Total Liabilities</strong></td>
+                    <td style="text-align:right; padding:8px 12px; border:1px solid #ddd; font-size:13px;"><strong>CHF 0 / € 0</strong></td>
+                    <td style="padding:8px 12px; border:1px solid #ddd; font-size:12px;">Clean. Fully documented.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="background:#e8f5e9; border:1px solid #c8e6c9; border-radius:6px; padding:12px 16px; margin-top:8px;">
+            <p style="margin:0; font-size:13px;"><strong>Net Worth Summary:</strong> In excess of CHF 1.1 million in Swiss real estate (unencumbered) + in excess of €5.2 million in Greek real estate portfolio, shareholder loans, and investment land. Zero personal liabilities. Zero outstanding taxes. This balance sheet excludes personal assets (art, jewelry, furniture, two personal vehicles, and other valuables).</p>
+        </div>
+    </div>
+
+    <!-- CV -->
+    <div class="section" id="cv">
+        <h2>6. Curriculum Vitae — Natalie Jarry</h2>
+
+        <table class="cv-table">
+            <tbody>
+                <tr>
+                    <td class="cv-name" colspan="2">Natalie Jarry</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="font-size:12px; color:#666; padding-bottom:16px;">
+                        natalie@emanatis.com &nbsp;|&nbsp; +30 694 576 7664 &nbsp;|&nbsp; Agiou Nikolaou 72, Glyfada, Athens 16674, Greece<br>
+                        Canadian Citizen &nbsp;|&nbsp; Greek Resident (Golden Visa Holder)
+                    </td>
+                </tr>
+                <tr><td colspan="2" class="cv-section-header">Professional Experience</td></tr>
+                <tr>
+                    <td class="cv-date">2025 – Present</td>
+                    <td>
+                        <strong>DreamLease S.A.</strong> — Founder<br>
+                        <span class="cv-desc">Founded Greek vehicle leasing company. Tesla-only fleet platform. Full lifecycle value capture. <a href="https://dreamlease.gr" target="_blank" style="color:#1565c0;">dreamlease.gr</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cv-date">2022 – Present</td>
+                    <td>
+                        <strong>Emanatis Luxury Living IKE</strong> — Founder<br>
+                        <span class="cv-desc">Co-founded luxury real estate development company. Flagship: 10-unit LEED Platinum residential development in Galatsi, Athens (€3.8M portfolio value). Oversees client relations, supplier operations, on-site quality control, and strategic development. <a href="https://emanatis.com" target="_blank" style="color:#1565c0;">emanatis.com</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cv-date">2015 – 2022</td>
+                    <td>
+                        <strong>DAC Aviation International</strong> — VP Global Operations<br>
+                        <span class="cv-desc">Spearheaded DAC Ultra luxury business jet operations from Montreal. Grew from 1 to 3 company-owned plus 10 managed aircraft. 95% of Montreal/Quebec business jet traffic. 5,000+ hours annually. Operations dissolved during COVID.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cv-date">2012 – 2014</td>
+                    <td>
+                        <strong>Starlink Aviation</strong> — Director, Managed Aircraft
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cv-date">2004 – 2012</td>
+                    <td>
+                        <strong>ABC Completions Inc.</strong> — Marketing Director, Aircraft Completion Supervision
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cv-date">1998 – 2002</td>
+                    <td>
+                        <strong>Bombardier Aerospace</strong> — Manager, Customer Aircraft Interior Sales, Global Express Program
+                    </td>
+                </tr>
+                <tr><td colspan="2" class="cv-section-header">Earlier Career</td></tr>
+                <tr>
+                    <td class="cv-date">Pre-1998</td>
+                    <td><span class="cv-desc">Corporate finance — Syndication & New Issues, Nesbitt Burns (Canadian investment bank)</span></td>
+                </tr>
+                <tr><td colspan="2" class="cv-section-header">Licences & Certifications</td></tr>
+                <tr>
+                    <td colspan="2" style="padding-left:12px;">
+                        <ul style="margin:4px 0; font-size:13px;">
+                            <li>Commercial Pilot Licence — Type Cessna Citation 550</li>
+                            <li>Medical First Class — No Limitations</li>
+                            <li>Language Proficiency Level 6 — English &amp; French</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr><td colspan="2" class="cv-section-header">Education</td></tr>
+                <tr>
+                    <td class="cv-date">1986 – 1989</td>
+                    <td><strong>University of Montreal</strong> — Economics and Marketing</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- VALUATION -->
+    <div class="section" id="valuation">
+        <h2>7. Property Valuation — Market Data</h2>
+        <p style="font-size:13px; margin-bottom:12px;">Independent market research for La Punt-Chamues-ch (7522), Graubünden, Switzerland. All figures as of January 2026.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>CHF/m² (Apartments)</th>
+                    <th>Implied 65 m² Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Neho.ch (Jan 2026)</td><td>CHF 13,560</td><td>CHF 881,400</td></tr>
+                <tr><td>RealAdvisor</td><td>CHF 15,195</td><td>CHF 987,675</td></tr>
+                <tr><td>Acheteur.ch (Jan 2026)</td><td>CHF 14,531</td><td>CHF 944,515</td></tr>
+                <tr><td>Comparis</td><td>CHF 12,117</td><td>CHF 787,605</td></tr>
+                <tr style="font-weight:600; background:#f9f9f9;"><td>ImmoScout24 (comp listing)</td><td>CHF 22,951 (61 m² unit)</td><td>CHF 1,400,000 (asking)</td></tr>
+            </tbody>
+        </table>
+        <p style="font-size:12px; color:#888; margin-top:8px;">Indoor parking addendum: CHF 30,000–50,000 typical for Engadin valley. Valuation calculated at midpoint 65 m².</p>
+        <p style="font-size:13px; margin-top:12px;"><strong>Conclusion:</strong> Market value of CHF 1,100,000 is well-supported by comparable data. Municipal assessment CHF 760,000 reflects conservative Swiss tax methodology (~70–80% of market value). Swiss taxable asset value CHF 754,200 (2024 tax billing) confirms municipal assessment.</p>
+    </div>
+
+    <!-- NEXT STEPS -->
+    <div class="section" id="next">
+        <h2>8. Next Steps</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:5%">#</th>
+                    <th style="width:45%">Action</th>
+                    <th style="width:25%">Responsible</th>
+                    <th style="width:15%">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>Natalie reviews and confirms Owner's Declaration figures</td><td>Natalie</td><td><span class="status status-complete">Complete ✓</span></td></tr>
+                <tr><td>2</td><td>Passport copy</td><td>—</td><td><span class="status status-ready">Received</span></td></tr>
+                <tr><td>3</td><td>Greek tax return / tax clearance (ENFIA 2026)</td><td>—</td><td><span class="status status-ready">Complete</span></td></tr>
+                <tr><td>4</td><td>Swiss bank account statements</td><td>—</td><td><span class="status status-na">N/A — No Swiss accounts</span></td></tr>
+                <tr><td>5</td><td>Land registry extract (apartment + parking)</td><td>—</td><td><span class="status status-ready">Complete</span></td></tr>
+                <tr><td>6</td><td>Debt enforcement (Betreibungsregisterauszug)</td><td>—</td><td><span class="status status-na">N/A — Never Swiss resident</span></td></tr>
+                <tr><td>7</td><td>Pension fund certificate</td><td>—</td><td><span class="status status-na">N/A — Never Swiss resident</span></td></tr>
+                <tr><td>8</td><td>Finalize and send complete package to Hyrock</td><td>Emmanuel / Natalie</td><td><span class="status status-complete">Complete ✓</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SOURCE DOCUMENTS -->
+    <div class="section" id="documents">
+        <h2>9. Source Documents</h2>
+        <p style="font-size:13px; margin-bottom:16px;">All supporting documents are embedded below for review. Click any image to enlarge. Click the document title to download the original PDF.</p>
+
+        <!-- Document viewer styles -->
+        <style>
+            .doc-card { border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 16px; overflow: hidden; }
+            .doc-card-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: #f9f9f9; border-bottom: 1px solid #e0e0e0; cursor: pointer; }
+            .doc-card-header:hover { background: #f0f0f0; }
+            .doc-card-header h4 { font-size: 13px; font-weight: 600; margin: 0; }
+            .doc-card-header .toggle { font-size: 11px; color: #888; }
+            .doc-card-body { padding: 16px; display: none; }
+            .doc-card-body.open { display: block; }
+            .doc-card-body img { max-width: 100%; height: auto; border: 1px solid #e0e0e0; border-radius: 4px; margin-bottom: 8px; cursor: zoom-in; }
+            .doc-card-body img:hover { border-color: #1565c0; }
+            .doc-download { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: #1565c0; color: #fff; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 600; margin-bottom: 12px; }
+            .doc-download:hover { background: #0d47a1; }
+            .doc-thumbnails { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+            .doc-thumbnails img { width: 100%; height: auto; }
+            /* Lightbox */
+            .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; cursor: pointer; }
+            .lightbox.open { display: flex; align-items: center; justify-content: center; }
+            .lightbox img { max-width: 95%; max-height: 95%; border-radius: 4px; }
+        </style>
+
+        <div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+            <img id="lightbox-img" src="" alt="Enlarged document">
+        </div>
+
+        <script>
+            function openLightbox(src) {
+                document.getElementById('lightbox-img').src = src;
+                document.getElementById('lightbox').classList.add('open');
+            }
+            function toggleDoc(id) {
+                var body = document.getElementById('doc-body-' + id);
+                body.classList.toggle('open');
+                var header = document.getElementById('doc-toggle-' + id);
+                header.textContent = body.classList.contains('open') ? '▲ Collapse' : '▼ Expand';
+            }
+        </script>
+
+        <!-- Canadian Passport -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('passport')">
+                <h4>📄 Canadian Passport — Natalie Jarry</h4>
+                <span class="toggle" id="doc-toggle-passport">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-passport">
+                <a href="docs/NJarry_Passport_2024.pdf" download class="doc-download">⬇ Download PDF (154.3 KB)</a>
+                <div class="doc-thumbnails">
+                    <img src="docs/NJarry_Passport_2024_1.png" alt="Passport" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Golden Visa -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('goldenvisa')">
+                <h4>📄 Greek Golden Visa — Natalie Jarry</h4>
+                <span class="toggle" id="doc-toggle-goldenvisa">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-goldenvisa">
+                <a href="docs/Golden_Visa_Front.pdf" download class="doc-download">⬇ Download Front (5.1 MB)</a>
+                <a href="docs/Golden_Visa.pdf" download class="doc-download">⬇ Download Full (4.1 MB)</a>
+                <div class="doc-thumbnails">
+                    <img src="docs/Golden_Visa_Front_1.png" alt="Golden Visa Front" onclick="openLightbox(this.src)">
+                    <img src="docs/Golden_Visa_1.png" alt="Golden Visa" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Land Registry - Apartment -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('landreg-apt')">
+                <h4>📄 Land Registry — Apartment (Grundbuchauszug)</h4>
+                <span class="toggle" id="doc-toggle-landreg-apt">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-landreg-apt">
+                <a href="docs/LaPunt_Apartment_Land_Registry.pdf" download class="doc-download">⬇ Download PDF (198.6 KB)</a>
+                <div class="doc-thumbnails">
+                    <img src="docs/LaPunt_Apartment_Land_Registry_1.png" alt="Land Registry Apartment p1" onclick="openLightbox(this.src)">
+                    <img src="docs/LaPunt_Apartment_Land_Registry_2.png" alt="Land Registry Apartment p2" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Land Registry - Garage -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('landreg-garage')">
+                <h4>📄 Land Registry — Parking Space #23 (Grundbuchauszug)</h4>
+                <span class="toggle" id="doc-toggle-landreg-garage">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-landreg-garage">
+                <a href="docs/LaPunt_Garage_Land_Registry.pdf" download class="doc-download">⬇ Download PDF (181.9 KB)</a>
+                <div class="doc-thumbnails">
+                    <img src="docs/LaPunt_Garage_Land_Registry_1.png" alt="Land Registry Garage p1" onclick="openLightbox(this.src)">
+                    <img src="docs/LaPunt_Garage_Land_Registry_2.png" alt="Land Registry Garage p2" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Municipal Taxes -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('municipal-tax')">
+                <h4>📄 Municipal Tax Bill 2024 — La Punt Chamues-ch</h4>
+                <span class="toggle" id="doc-toggle-municipal-tax">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-municipal-tax">
+                <a href="docs/Municipal_Taxes.pdf" download class="doc-download">⬇ Download PDF (65.8 KB)</a>
+                <div class="doc-thumbnails">
+                    <img src="docs/Municipal_Taxes_1.png" alt="Municipal Tax p1" onclick="openLightbox(this.src)">
+                    <img src="docs/Municipal_Taxes_2.png" alt="Municipal Tax p2" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Cantonal Taxes -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('cantonal-tax')">
+                <h4>📄 Cantonal Tax Bill 2024 — Graubünden</h4>
+                <span class="toggle" id="doc-toggle-cantonal-tax">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-cantonal-tax">
+                <a href="docs/Cantonal_Taxes.pdf" download class="doc-download">⬇ Download PDF (70.2 KB)</a>
+                <div class="doc-thumbnails">
+                    <img src="docs/Cantonal_Taxes_1.png" alt="Cantonal Tax p1" onclick="openLightbox(this.src)">
+                    <img src="docs/Cantonal_Taxes_2.png" alt="Cantonal Tax p2" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Condo Association -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('condo-fees')">
+                <h4>📄 Condo Association Fees 2024/25 — STWEG Curtins Sassella</h4>
+                <span class="toggle" id="doc-toggle-condo-fees">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-condo-fees">
+                <a href="docs/Condo_Association_Fees.pdf" download class="doc-download">⬇ Download PDF (70.7 KB)</a>
+                <div class="doc-thumbnails">
+                    <img src="docs/Condo_Association_Fees_1.png" alt="Condo Fees p1" onclick="openLightbox(this.src)">
+                    <img src="docs/Condo_Association_Fees_2.png" alt="Condo Fees p2" onclick="openLightbox(this.src)">
+                    <img src="docs/Condo_Association_Fees_3.png" alt="Condo Fees p3" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Municipal Annual Fees -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('municipal-fees')">
+                <h4>📄 Municipal Annual Fees 2025 — La Punt Chamues-ch</h4>
+                <span class="toggle" id="doc-toggle-municipal-fees">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-municipal-fees">
+                <a href="docs/Municipal_Annual_Fees.pdf" download class="doc-download">⬇ Download PDF (515.8 KB)</a>
+                <div class="doc-thumbnails">
+                    <img src="docs/Municipal_Annual_Fees_1.png" alt="Municipal Fees p1" onclick="openLightbox(this.src)">
+                    <img src="docs/Municipal_Annual_Fees_2.png" alt="Municipal Fees p2" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Tourism Tax -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('tourism-tax')">
+                <h4>📄 Guest & Tourism Tax 2025 — La Punt Chamues-ch</h4>
+                <span class="toggle" id="doc-toggle-tourism-tax">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-tourism-tax">
+                <a href="docs/Guests_Tourism_Taxes.pdf" download class="doc-download">⬇ Download PDF (348.9 KB)</a>
+                <div class="doc-thumbnails">
+                    <img src="docs/Guests_Tourism_Taxes_1.png" alt="Tourism Tax" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Galatsi Insurance -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('insurance')">
+                <h4>📄 Galatsi Construction Insurance — Orizon 1964 Policy 2184000708</h4>
+                <span class="toggle" id="doc-toggle-insurance">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-insurance">
+                <a href="docs/Galatsi_Insurance.pdf" download class="doc-download">⬇ Download PDF (766.7 KB)</a>
+                <p style="font-size:12px; color:#888; margin-bottom:8px;">Key pages shown below (full 39-page policy available via download).</p>
+                <div class="doc-thumbnails">
+                    <img src="docs/Galatsi_Insurance_1.png" alt="Insurance p1" onclick="openLightbox(this.src)">
+                    <img src="docs/Galatsi_Insurance_2.png" alt="Insurance p2" onclick="openLightbox(this.src)">
+                    <img src="docs/Galatsi_Insurance_3.png" alt="Insurance p3" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Greek Tax Clearance -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('tax-clearance')">
+                <h4>📄 Greek Tax Clearance — ENFIA 2026 (Unified Property Tax Settlement)</h4>
+                <span class="toggle" id="doc-toggle-tax-clearance">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-tax-clearance">
+                <a href="docs/Greek_Tax_Clearance_2026.pdf" download class="doc-download">⬇ Download PDF (151.7 KB)</a>
+                <div style="background:#fff3e0; border:1px solid #ffe0b2; border-radius:4px; padding:10px 14px; margin-bottom:12px; font-size:12px;">
+                    <strong>English Summary:</strong> This is the official ENFIA (ΕΝΦΙΑ) clearance certificate issued by the Hellenic Republic / AADE (Independent Authority for Public Revenue) on 15 March 2026. It confirms that <strong>Natalie Jarry (AFM/Tax ID: 181659411)</strong> is a registered Greek tax resident in the Attica region (KEΦOK 9791), and that her 2026 unified property tax obligations have been <strong>fully settled with no outstanding balance</strong>. Document reference: 2359274/2026.
+                </div>
+                <div class="doc-thumbnails">
+                    <img src="docs/Greek_Tax_Clearance_1.png" alt="Tax Clearance p1" onclick="openLightbox(this.src)">
+                    <img src="docs/Greek_Tax_Clearance_2.png" alt="Tax Clearance p2" onclick="openLightbox(this.src)">
+                    <img src="docs/Greek_Tax_Clearance_3.png" alt="Tax Clearance p3" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Nea Smyrni Purchase Agreement -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('nea-smyrni')">
+                <h4>📄 Property Purchase Agreement — Nea Smyrni, Athens (Investment Land / Golden Visa Qualifying Asset)</h4>
+                <span class="toggle" id="doc-toggle-nea-smyrni">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-nea-smyrni">
+                <a href="docs/Nea_Smyrni_Purchase_Agreement.pdf" download class="doc-download">⬇ Download PDF (17.7 MB)</a>
+                <p style="font-size:12px; color:#888; margin-bottom:8px;">20-page purchase agreement. Key pages shown below.</p>
+                <div class="doc-thumbnails">
+                    <img src="docs/Nea_Smyrni_1.png" alt="Purchase Agreement p1" onclick="openLightbox(this.src)">
+                    <img src="docs/Nea_Smyrni_2.png" alt="Purchase Agreement p2" onclick="openLightbox(this.src)">
+                    <img src="docs/Nea_Smyrni_3.png" alt="Purchase Agreement p3" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Hyrock Checklist -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('hyrock-checklist')">
+                <h4>📄 Original Hyrock Checklist</h4>
+                <span class="toggle" id="doc-toggle-hyrock-checklist">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-hyrock-checklist">
+                <a href="docs/Hyrock_Checklist.pdf" download class="doc-download">⬇ Download PDF (125.7 KB)</a>
+                <div class="doc-thumbnails">
+                    <img src="docs/Hyrock_Checklist_1.png" alt="Hyrock Checklist" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <!-- Signed Declaration Pages -->
+        <div class="doc-card">
+            <div class="doc-card-header" onclick="toggleDoc('signed-decl')">
+                <h4>📄 Signed Declaration — Natalie Jarry (21 May 2026)</h4>
+                <span class="toggle" id="doc-toggle-signed-decl">▼ Expand</span>
+            </div>
+            <div class="doc-card-body" id="doc-body-signed-decl">
+                <p style="font-size:12px; color:#888; margin-bottom:8px;">Signed original of the Declaration of Income and Financial Position, Athens, Greece, 21 May 2026. Two pages.</p>
+                <div class="doc-thumbnails">
+                    <img src="docs/signed-page-1.jpeg" alt="Signed Declaration Page 1" onclick="openLightbox(this.src)">
+                    <img src="docs/signed-page-2.jpeg" alt="Signed Declaration Page 2 (signature)" onclick="openLightbox(this.src)">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="section" id="contact">
+        <h2>Questions? Contact Us</h2>
+        <p style="font-size:13px; margin-bottom:16px;">If you have any questions about this application or require additional documentation, please don't hesitate to reach out. Your question will be received by our Chief of Staff and responded to promptly.</p>
+
+        <div class="contact-box">
+            <div class="contact-methods">
+                <a href="mailto:orpheus@emanatis.com?subject=Hyrock%20Bridging%20Loan%20Application%20%E2%80%94%20Question%20from%20Hyrock&body=Dear%20Orpheus%2C%0A%0APage%2FSection%20reference%3A%20%0A%0AMy%20question%3A%20%0A%0A" class="contact-btn">
+                    <span style="font-size:20px;">✉️</span>
+                    <div>
+                        <strong>Send a Question</strong>
+                        <span>Opens your email client — addressed to Orpheus Aurelius, Chief of Staff</span>
+                    </div>
+                </a>
+                <div class="contact-info">
+                    <div><strong>Orpheus Aurelius</strong> — Chief of Staff, Emanatis Group</div>
+                    <div>orpheus@emanatis.com</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Orpheus Aurelius — Chief of Staff, Emanatis Group &nbsp;|&nbsp; Confidential &nbsp;|&nbsp; 20 May 2026
+    </div>
+
+</div>
+</body>
+</html>
